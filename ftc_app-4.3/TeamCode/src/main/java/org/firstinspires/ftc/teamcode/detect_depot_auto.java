@@ -45,7 +45,7 @@ public class detect_depot_auto extends LinearOpMode {
         Methods_DriveTrain drivetrain = new Methods_DriveTrain(robot, this);
         Methods_Sensors sensor = new Methods_Sensors(robot, this);
 
-        //init
+        //init TensorFlow
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             robot.initTfod(hardwareMap);
         } else {

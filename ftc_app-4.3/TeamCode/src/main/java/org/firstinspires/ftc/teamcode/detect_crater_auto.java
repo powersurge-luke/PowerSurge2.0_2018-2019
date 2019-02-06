@@ -22,6 +22,7 @@ public class detect_crater_auto extends LinearOpMode {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
+
     private int i = 0;
 
     public String mineralPosition = null;
@@ -33,20 +34,23 @@ public class detect_crater_auto extends LinearOpMode {
         robot.init(hardwareMap);
         robot.initVuforia(hardwareMap);
 
-        while(!robot.vuforiaLoaded && !isStopRequested()){
+        while (!robot.vuforiaLoaded && !isStopRequested()){
 
         }
 
+
+        Methods_Climbing climber = new Methods_Climbing(robot, this);
+        Methods_Intake intake = new Methods_Intake(robot, this);
+        Methods_DriveTrain drivetrain = new Methods_DriveTrain(robot, this);
+        Methods_Sensors sensor = new Methods_Sensors(robot, this);
+
+        //init TensorFlow
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             robot.initTfod(hardwareMap);
         } else {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
-        Methods_Climbing climber = new Methods_Climbing(robot, this);
-        Methods_Intake intake = new Methods_Intake(robot, this);
-        Methods_DriveTrain drivetrain = new Methods_DriveTrain(robot, this);
-        Methods_Sensors sensor = new Methods_Sensors(robot, this);
 
         waitForStart();
 
