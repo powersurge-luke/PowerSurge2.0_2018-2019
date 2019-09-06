@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 @Autonomous (name = "Detect Depot")
@@ -133,10 +135,12 @@ public class detect_depot_auto extends LinearOpMode {
         //drive to and knock off correct mineral
         if (mineralPosition == ("left")) {
             drivetrain.timedDrive(2.2, 1, -1, 0, .7);
+
         } else if (mineralPosition == ("right")) {
             drivetrain.timedDrive(2.2, 1, 1, 0, .7);
+
         } else {
-            drivetrain.timedDrive(2.1, 1, .2, 0, .7);
+            drivetrain.timedDrive(2.3, 1, .2, 0, .7);
         }
 
         //drive to depot
@@ -144,20 +148,27 @@ public class detect_depot_auto extends LinearOpMode {
         //strafe back to center position
         if (mineralPosition == ("left")) {
             drivetrain.timedDrive(2, 1, 1, 0, .7);
+
+
         } else if (mineralPosition == ("right")) {
             drivetrain.timedDrive(2, 1, -1, 0, .7);
+
         }
 
         //deploy marker
         robot.marker.setPosition(.5);
 
         //get out of the way
-        drivetrain.timedDrive(2, .3, -1, 0, .7);
+        drivetrain.timedDrive(2, .3, -1, .3, .7);
 
         sleep(100);
 
         //drive to crater
-        drivetrain.timedDrive(-5, -1, 0, 0, .5);
+        drivetrain.timedDrive(7.7, -1, -.3, 0, .4);
+        drivetrain.timedDrive(3, -1, -.3, 0, .3);
+
+
+
 
     }
 }

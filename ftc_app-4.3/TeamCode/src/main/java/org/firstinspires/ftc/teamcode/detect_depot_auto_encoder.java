@@ -23,8 +23,6 @@ public class detect_depot_auto_encoder extends LinearOpMode {
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
 
-    private int i = 0;
-
     public String mineralPosition = null;
 
 
@@ -84,10 +82,6 @@ public class detect_depot_auto_encoder extends LinearOpMode {
                             telemetry.addData("Height", recognition.getHeight());
                             telemetry.addData("Bottom Coordinate", recognition.getBottom());
                             telemetry.addLine();
-
-                            if (recognition.getHeight() < 130 && recognition.getBottom() < 490) {
-                                i++;
-                            }
 
                             if (recognition.getLabel().equals(LABEL_GOLD_MINERAL) && recognition.getHeight() > 130) {
                                 goldMineralX = (int) recognition.getLeft();

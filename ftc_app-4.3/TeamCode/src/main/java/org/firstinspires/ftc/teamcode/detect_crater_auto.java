@@ -67,7 +67,7 @@ public class detect_crater_auto extends LinearOpMode {
         double timeout = runtime.seconds() + 8;
 
         //scan for minerals
-        while (opModeIsActive() && mineralPosition == null && runtime.seconds() < timeout){
+        while (opModeIsActive() && mineralPosition == null && runtime.seconds() < timeout) {
             if (robot.tfod != null) {
                 // getUpdatedRecognitions() will return null if no new information is available since
                 // the last time that call was made.
@@ -90,11 +90,11 @@ public class detect_crater_auto extends LinearOpMode {
                                 i++;
                             }
 
-                            if (recognition.getLabel().equals(LABEL_GOLD_MINERAL) && recognition.getHeight() > 130) {
+                            if (recognition.getLabel().equals(LABEL_GOLD_MINERAL) && recognition.getHeight() > 90) {
                                 goldMineralX = (int) recognition.getLeft();
-                            } else if (silverMineral1X == -1 && recognition.getHeight() > 130) {
+                            } else if (silverMineral1X == -1 && recognition.getHeight() > 90) {
                                 silverMineral1X = (int) recognition.getLeft();
-                            } else{
+                            } else {
                                 silverMineral2X = (int) recognition.getLeft();
                             }
                         }
@@ -106,7 +106,7 @@ public class detect_crater_auto extends LinearOpMode {
                                 telemetry.addData("Gold Mineral Position", "Center");
                                 mineralPosition = "center";
                             }
-                        } else {
+                        } else{
                             telemetry.addData("Gold Mineral Position", "Right");
                             mineralPosition = "right";
                         }
@@ -132,18 +132,18 @@ public class detect_crater_auto extends LinearOpMode {
 
         //drive to and knock off correct mineral
         if (mineralPosition == ("left")) {
-            drivetrain.timedDrive(1.5, 1, -1, 0, .7);
+            drivetrain.timedDrive(1.3, 1, -1, 0, .7);
         } else if (mineralPosition == ("right")) {
-            drivetrain.timedDrive(2.2, 1, 1, 0, .7);
+            drivetrain.timedDrive(1.8, 1, .9, 0, .7);
         }
         else {
             drivetrain.timedDrive(1.6, 1, .2, 0, .7);
         }
 
+        drivetrain.timedDrive(1, 1, 0, 0, .5);
+
         robot.intakeFolder.setPower(-1);
         sleep(100);
         robot.intakeFolder.setPower(0);
-
-        drivetrain.timedDrive(4, -1, -.2, 0, .5);
     }
 }
